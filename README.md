@@ -1,21 +1,37 @@
 # VectorMath
 
-A lightweight vector mathematics library written in C++, developed as a practical project for learning C++ and exploring object-oriented design, operator overloading, and mathematical programming.
+A lightweight vector mathematics library written in C++, implementing two-dimensional and three-dimensional vectors. This project explores mathematical programming, operator overloading, class design, exception handling, and testing.
 
 ## Features
 
 ### Vector2
 
-The library currently implements a two-dimensional vector type with the following functionality:
+A two-dimensional vector type with the following functionality:
 
 - **Arithmetic:** vector addition and subtraction, scalar multiplication and division.
 - **Compound assignment:** `+=`, `-=`, `*=`, and `/=`.
 - **Comparison:** equality and inequality operators.
-- **Mathematical operations:** magnitude, squared magnitude, normalisation, dot product, and distance between vectors.
+- **Magnitude:** calculate the vector's magnitude and squared magnitude.
+- **Normalisation:** obtain a unit vector in the same direction.
+- **Dot product:** calculate the scalar product of two vectors.
+- **Distance:** calculate the Euclidean distance between two vectors.
 - **Stream output:** print vectors directly using `std::cout`.
 - **Error handling:** exceptions for invalid operations, including division by zero and normalising a zero vector.
 
-## Example
+### Vector3
+
+A three-dimensional vector type with the corresponding arithmetic, comparison, and mathematical functionality, extended to three dimensions.
+
+Additional functionality includes:
+
+- **Three-dimensional magnitude and normalisation.**
+- **Dot product:** calculate the scalar product of two 3D vectors.
+- **Cross product:** calculate a vector perpendicular to two input vectors.
+- **Distance:** calculate the Euclidean distance between two vectors in 3D space.
+
+## Examples
+
+### Vector2
 
 ```cpp
 #include <iostream>
@@ -23,21 +39,15 @@ The library currently implements a two-dimensional vector type with the followin
 
 int main()
 {
-    Vector2 a{3.0, 4.0};
-    Vector2 b{1.0, 2.0};
-
-    Vector2 sum = a + b;
-    Vector2 difference = a - b;
-    Vector2 scaled = 2.0 * a;
-    Vector2 normalised = a.Normalised();
+    Vector2 a{3.0f, 4.0f};
+    Vector2 b{1.0f, 2.0f};
 
     std::cout << "a: " << a << '\n';
-    std::cout << "b: " << b << '\n';
-    std::cout << "Sum: " << sum << '\n';
-    std::cout << "Difference: " << difference << '\n';
-    std::cout << "Scaled: " << scaled << '\n';
+    std::cout << "Sum: " << a + b << '\n';
+    std::cout << "Difference: " << a - b << '\n';
+    std::cout << "Scaled: " << 2.0f * a << '\n';
     std::cout << "Magnitude: " << a.Magnitude() << '\n';
-    std::cout << "Normalised: " << normalised << '\n';
+    std::cout << "Normalised: " << a.Normalised() << '\n';
     std::cout << "Dot product: " << a.Dot(b) << '\n';
     std::cout << "Distance: " << a.DistanceTo(b) << '\n';
 
@@ -45,55 +55,87 @@ int main()
 }
 ```
 
-*Note: this example assumes the public interface uses the method names shown above and supports construction from two numeric coordinates.*
+### Vector3
+
+```cpp
+#include <iostream>
+#include "Vector3.h"
+
+int main()
+{
+    Vector3 a{1.0f, 2.0f, 3.0f};
+    Vector3 b{4.0f, 5.0f, 6.0f};
+
+    std::cout << "a: " << a << '\n';
+    std::cout << "Sum: " << a + b << '\n';
+    std::cout << "Magnitude: " << a.Magnitude() << '\n';
+    std::cout << "Normalised: " << a.Normalised() << '\n';
+    std::cout << "Dot product: " << a.Dot(b) << '\n';
+    std::cout << "Cross product: " << a.Cross(b) << '\n';
+    std::cout << "Distance: " << a.DistanceTo(b) << '\n';
+
+    return 0;
+}
+```
+
+The examples assume the public interfaces use the method names shown above.
 
 ## Building
 
 The project uses the Microsoft Visual C++ compiler (MSVC).
 
-Compile the source files from a Developer Command Prompt for Visual Studio, or from a terminal where `cl` is available:
+Compile the relevant source files from a Developer Command Prompt for Visual Studio, or a terminal where `cl` is available.
+
+For `Vector2`:
 
 ```bat
 cl /EHsc /utf-8 main.cpp Vector2.cpp /Fe:VectorMath.exe
 ```
 
-Replace `main.cpp` with your test file's name if it differs.
+For `Vector3`:
 
-Run the resulting executable:
+```bat
+cl /EHsc /utf-8 main.cpp Vector3.cpp /Fe:VectorMath.exe
+```
+
+If your test program is named `tests.cpp`, replace `main.cpp` with `tests.cpp`.
+
+Run the executable:
 
 ```bat
 VectorMath.exe
 ```
 
+Compile only the source files needed for the chosen executable. If both vector implementations are used, include both `Vector2.cpp` and `Vector3.cpp`.
+
 ## Testing
 
-The project includes a test program covering arithmetic, comparisons, stream output, mathematical operations, and exception handling.
+The project includes a test program for checking the behaviour of the vector implementations.
 
-The tests use floating-point tolerances for numerical calculations to account for rounding errors.
+Tests cover:
 
-## Project Structure
+- Arithmetic and compound assignment operators.
+- Equality and inequality.
+- Stream output.
+- Magnitude and squared magnitude.
+- Normalisation.
+- Dot and cross products, where applicable.
+- Distance calculations.
+- Exception handling for invalid operations.
 
-```text
-VectorMath/
-├── Vector2.h
-├── Vector2.cpp
-├── main.cpp
-├── README.md
-├── .gitignore
-└── build.bat
-```
+Numerical tests use floating-point tolerances where appropriate to account for rounding errors.
 
-The exact file structure may vary as the project develops.
+## Future Development
 
-## Planned Development
+Potential improvements include:
 
-- [ ] Implement a three-dimensional `Vector3` type.
-- [ ] Add three-dimensional vector operations, including the cross product.
-- [ ] Expand the test suite as new functionality is added.
-- [ ] Refine the library's design and documentation.
+- Refactoring shared functionality to reduce duplication between `Vector2` and `Vector3`.
+- Expanding test coverage for edge cases and numerical behaviour.
+- Improving the library's interface and documentation.
+- Reusing the vector types in future mathematical, simulation, or graphics projects.
 
 ## Purpose
 
-This project is an opportunity to develop practical C++ skills through a reusable mathematical component. It provides experience with classes and encapsulation, operator overloading, references, `const` correctness, exception handling, and testing.
+VectorMath is a practical C++ learning project focused on implementing reusable mathematical types. It provides experience with class design, operator overloading, references, `const` correctness, numerical calculations, exception handling, and testing.
 
-The longer-term goal is to build a small, well-tested vector mathematics library that can be reused in future programming and simulation projects.
+The goal is to develop a clear, maintainable vector mathematics library that can be reused in future programming and simulation projects.

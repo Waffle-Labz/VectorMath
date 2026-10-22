@@ -6,11 +6,11 @@
 class Vector2 {
 
     public:
-         double x;
-         double y;
+         float x;
+         float y;
 
     public:
-        Vector2(double x, double y);
+        Vector2(float x, float y);
 
         Vector2 operator+(const Vector2& other) const;
         Vector2 operator-(const Vector2& other) const;
@@ -25,15 +25,15 @@ class Vector2 {
         bool operator==(const Vector2& other) const;
         bool operator!=(const Vector2& other) const;
 
-        double Magnitude() const;
-        double MagnitudeSquared() const;
+        float Magnitude() const;
+        float MagnitudeSquared() const;
         Vector2 Normalised() const;
-        double Dot(const Vector2& other) const;
-        double DistanceTo(const Vector2& other) const;
+        float Dot(const Vector2& other) const;
+        float DistanceTo(const Vector2& other) const;
         
 };
 
-Vector2 operator*(double scalar, const Vector2& v);
+Vector2 operator*(float scalar, const Vector2& v);
 std::ostream& operator<<(std::ostream& os, const Vector2& v);
 
 #endif

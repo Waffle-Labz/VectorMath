@@ -2,18 +2,18 @@
 #include <stdexcept>
 #include "Vector2.h"
 
-Vector2::Vector2(double x, double y)
+Vector2::Vector2(float x, float y)
 {
     this->x = x;
     this->y = y;
 }
 
-double Vector2::MagnitudeSquared() const
+float Vector2::MagnitudeSquared() const
 {
     return (pow(x, 2) + pow(y, 2));
 }
 
-double Vector2::Magnitude() const
+float Vector2::Magnitude() const
 {
     return pow(MagnitudeSquared(), 0.5);
 }
@@ -25,12 +25,12 @@ Vector2 Vector2::Normalised() const
     return (*this / Magnitude());
 }
 
-double Vector2::Dot(const Vector2& other) const
+float Vector2::Dot(const Vector2& other) const
 {
     return (x * other.x + y * other.y);
 }
 
-double Vector2::DistanceTo(const Vector2& other) const
+float Vector2::DistanceTo(const Vector2& other) const
 {
     Vector2 r = other - *this;
     return r.Magnitude();
@@ -101,7 +101,7 @@ bool Vector2::operator!=(const Vector2& other) const
     return !(*this == other);
 }
 
-Vector2 operator*(double scalar, const Vector2& v)
+Vector2 operator*(float scalar, const Vector2& v)
 {
     return Vector2(v.x * scalar, v.y * scalar);
 }
