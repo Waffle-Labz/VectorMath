@@ -4,6 +4,9 @@
 #include <vector>
 #include <iosfwd>
 
+#include "Vector2.h"
+#include "Vector3.h"
+
 class Matrix
 {
     int rows;
@@ -12,7 +15,6 @@ class Matrix
     public:
         static Matrix Identity(int size);
 
-        int size;
         bool isSquare;
         std::vector<float> elements;
 
@@ -24,6 +26,11 @@ class Matrix
         Matrix operator+(const Matrix& other) const;
         Matrix operator-(const Matrix& other) const;
         Matrix operator*(const Matrix& other) const;
+        Vector2 operator*(const Vector2& vector) const;
+        Vector3 operator*(const Vector3& vector) const;
+        
+        bool operator==(const Matrix& other) const;
+        bool operator!=(const Matrix& other) const;
 
         Matrix& operator+=(const Matrix& other);
         Matrix& operator-=(const Matrix& other);
@@ -35,6 +42,9 @@ class Matrix
         Matrix Transpose() const;
         Matrix& TransposeInPlace();
         void Fill(float num);
+        float Determinant() const;
+        Matrix Inverse() const;
+        void Round(int decPlaces);
 };
 
 std::ostream& operator<<(std::ostream& os, const Matrix& m);

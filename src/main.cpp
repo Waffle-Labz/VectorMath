@@ -7,16 +7,19 @@ using namespace std;
 
 int main()
 {
-    Matrix A(2, 3);
+    Matrix A(2, 2);
+    A(0, 0) = 1.0f;
+    A(0, 1) = 2.0f;
+    A(1, 0) = 3.0f;
+    A(1, 1) = 4.0f;
 
-    A(0, 0) = 1; A(0, 1) = 2; A(0, 2) = 3;
-    A(1, 0) = 4; A(1, 1) = 5; A(1, 2) = 6;
+    Matrix B(2, 2);
+    B(0, 0) = 10.0f;
+    B(0, 1) = 2.0f;
+    B(1, 0) = 3.0f;
+    B(1, 1) = 4.0f;
 
-    // Matrix T = A.Transpose();
 
-    cout << A.TransposeInPlace().TransposeInPlace();
-
-    // A.Fill(9.0);
-
-    // cout << A;
+    std::cout << (A == B);
+    
 }
